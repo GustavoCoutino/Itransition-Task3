@@ -54,9 +54,15 @@ if (args.length < 3) {
   process.exit(1);
 }
 
+if (args.length % 2 == 0) {
+  console.log("The number of arguments should not be even");
+  process.exit(1);
+}
+
 const duplicates = args.filter((item, index) => args.indexOf(item) !== index);
-if (duplicates.length > 0) {
-  console.log("There's repeated arguments:", duplicates.join(", "));
+const uniqueDuplicates = [...new Set(duplicates)];
+if (uniqueDuplicates.length > 0) {
+  console.log("There's repeated arguments:", uniqueDuplicates.join(", "));
   process.exit(1);
 }
 
